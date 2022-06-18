@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+	<style>
+		.cutom-extension {
+			padding: 5px 10px;
+			border: 1px solid;
+			border-radius: 5px;
+			margin: 5px;
+		}
+		.cutom-extension > i {
+			cursor: pointer;
+			padding-left: 5px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container mt-5">
+		<div class="mx-auto col-lg-9">
+			<table class="table table-border">
+				<tbody>
+					<tr>
+						<th>고정 확장자</th>
+						<td>
+							<div id="checkbox-wrapper"></div>
+						</td>
+					</tr>
+					<tr>
+						<th>사용자 지정 확장자</th>
+						<td>
+							<div class="input-group">
+								<input type="text" class="form-control" id="custom-extension-input"
+									placeholder="Recipient's username" aria-label="Recipient's username"
+									aria-describedby="button-addon2">
+								<button class="btn btn-outline-secondary" type="button" id="add-btn" ><i class="fas fa-plus"></i> 추가</button>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<div id="custom-extension-wrapper"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+<script src="./js/pageFn.js"></script>
+<script>
+	(async function() {
+
+		drawFixedExtensionList(await loadFixedExtensionList());
+		drawCustomExtensionList(await loadCustomExtensionList());
+
+		document.getElementById('add-btn').addEventListener('click', async function () {
+			const extensionInput = document.getElementById('custom-extension-input');
+
+			if (!!extensionInput.value) {
+				const data = await addCustomExtension(extensionInput.value);
+				
+				if (!!data) {
+					const customExtensionWrapper = document.getElementById('custom-extension-wrapper');
+					extensionInput.value = '';
+					customExtensionWrapper.appendChild(await drawCustomExtension(data));
+				}
+			} else {
+				alert('추가할 확장자를 입력해 주세요.');
+			}
+		});
+	})();
+
+</script>
+
+</html>
