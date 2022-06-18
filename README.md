@@ -11,6 +11,8 @@
 - Lombok
 - Swagger 2.9.2
 - Mapstruct 1.4.2
+- Bootstrap 5.0.2
+- Fontawesome 5.8.2
 
 ## 실행 방법
 1. 프로젝트 임포트 후 maven clean 및 compile
