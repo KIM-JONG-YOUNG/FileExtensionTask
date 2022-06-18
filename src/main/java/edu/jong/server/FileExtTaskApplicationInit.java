@@ -16,8 +16,12 @@ public class FileExtTaskApplicationInit implements ApplicationListener<ContextRe
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-		fixedExtensionService.add("jpg", FixedExtensionState.UNCHECKED);
-		fixedExtensionService.add("png", FixedExtensionState.UNCHECKED);
+		fixedExtensionService.add("bat", FixedExtensionState.UNCHECKED);
+		fixedExtensionService.add("cmd", FixedExtensionState.UNCHECKED);
+		fixedExtensionService.add("com", FixedExtensionState.UNCHECKED);
+		fixedExtensionService.add("cpl", FixedExtensionState.UNCHECKED);
 		fixedExtensionService.add("exe", FixedExtensionState.UNCHECKED);
+		fixedExtensionService.add("scr", FixedExtensionState.UNCHECKED);
+		fixedExtensionService.add("js", FixedExtensionState.UNCHECKED);
 	}
 }
