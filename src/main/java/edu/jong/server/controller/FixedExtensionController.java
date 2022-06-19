@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.jong.server.enums.FixedExtensionState;
@@ -52,7 +53,7 @@ public class FixedExtensionController {
 	@GetMapping
 	ResponseEntity<List<ExtensionInfo>> search(
 			@ApiParam("확장자 체크 여부")
-			FixedExtensionState state) {
+			@RequestParam(required = false) FixedExtensionState state) {
 		return ResponseEntity.status(HttpStatus.OK)
 				.body(fixedExtensionService.search(state));
 	}

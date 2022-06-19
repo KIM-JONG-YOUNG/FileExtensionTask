@@ -8,7 +8,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>edu.jong</groupId>
-	<artifactId>board</artifactId>
+	<artifactId>server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>FileExtensionTask</name>
 	<description>파일 확장자 과제</description>

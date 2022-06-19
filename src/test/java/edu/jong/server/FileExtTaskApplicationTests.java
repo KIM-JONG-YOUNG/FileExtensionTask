@@ -63,6 +63,10 @@ class FileExtTaskApplicationTests {
 			try {
 				long beforeTime = System.currentTimeMillis(); //코드 실행 전에 시간 받아오기
 		        
+				// 1초 후 업데이트를 위해 실행
+				// 이전 트랜잭션이 먼저 데이터 확실히 점유하기 위해
+				Thread.sleep(1000);
+				
 				// 업데이트를 위한 조회(데이터 잠금)  후 1초 대기 후 저장
 				// 하지만 먼저 수정을 위해 데이터를 점유한 Thread가 있기 때문에 해당 트랜잭션 종료 후 데이터 수정
 				// 따라서 약 3초 후 데이터 저장 
@@ -80,9 +84,7 @@ class FileExtTaskApplicationTests {
 
 		latch.await();
 
-		// then
-		ExtensionInfo result = lockTestService.get(target.getNo());
-		assertEquals(FixedExtensionState.UNCHECKED, result.getState());
+		assertEquals(FixedExtensionState.UNCHECKED, lockTestService.get(target.getNo()).getState());
 	}
 	
 }

@@ -1,3 +1,4 @@
+const apiDomain = 'http://localhost:8000/api';
 async function callAPI(url, method, headers, data) {
     const option = {};
     let response = null;
@@ -23,7 +24,7 @@ async function callAPI(url, method, headers, data) {
 }
 async function loadFixedExtensionList() {
     try {
-        return await callAPI('http://localhost:8000/api/fixed-extension', 'get');
+        return await callAPI(apiDomain + '/fixed-extension', 'get');
     } catch(error) {
         console.error(error);
         alert(error.message);
@@ -31,7 +32,7 @@ async function loadFixedExtensionList() {
 }
 async function changeFixedExtension(event) {
     try {
-        await callAPI('http://localhost:8000/api/fixed-extension/' + event.target.value 
+        await callAPI(apiDomain + '/fixed-extension/' + event.target.value 
         	+ ((event.target.checked) ? '/check' : '/uncheck'), 'put');
     } catch(error) {
         console.error(error);
@@ -41,7 +42,7 @@ async function changeFixedExtension(event) {
 }
 async function addCustomExtension(extension) {
     try {
-        return await callAPI('http://localhost:8000/api/custom-extension', 'post',{
+        return await callAPI(apiDomain + '/custom-extension', 'post',{
             'Content-Type': 'text/plain'
         } , extension);
     } catch(error) {
@@ -51,7 +52,7 @@ async function addCustomExtension(extension) {
 }
 async function loadCustomExtensionList() {
     try {
-        return await callAPI('http://localhost:8000/api/custom-extension', 'get');
+        return await callAPI(apiDomain + '/custom-extension', 'get');
     } catch(error) {
         console.error(error);
         alert(error.message);
@@ -60,7 +61,7 @@ async function loadCustomExtensionList() {
 async function clickCustomExtensionRemoveBtn(event) {
     try {
         const extensionNo = event.target.getAttribute('data-no');
-        await callAPI('http://localhost:8000/api/custom-extension/' + extensionNo, 'delete');
+        await callAPI(apiDomain + '/custom-extension/' + extensionNo, 'delete');
         document.getElementById('cutom-extension-' + extensionNo).remove();
     } catch(error) {
         console.error(error);
