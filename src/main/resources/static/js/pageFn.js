@@ -1,4 +1,6 @@
+// const apiDomain = 'http://ec2-44-202-85-4.compute-1.amazonaws.com:8000/api';
 const apiDomain = 'http://localhost:8000/api';
+
 async function callAPI(url, method, headers, data) {
     const option = {};
     let response = null;
